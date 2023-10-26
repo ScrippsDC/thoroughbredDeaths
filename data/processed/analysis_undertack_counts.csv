@@ -1,0 +1,42 @@
+file,full_data,total,sold,breezed,sold_not_breezed,breezed_not_sold
+18undertack.pdf,False,132,0,100,0,100
+2019breezeshow.pdf,False,135,0,110,0,110
+Apr19_Excel.xls,True,1219,674,1001,0,327
+Apr20_Excel.xls,True,1312,634,777,1,144
+Apr21_Excel.xls,True,1214,724,864,0,140
+Apr22_Excel.xlsx,True,1230,705,900,0,195
+Apr23_Excel.xls,True,1222,699,876,0,177
+April18_Excel.xls,True,1220,698,959,0,261
+Barretts Sales 2018 Select Two-Year-Olds in Training Sale.html,False,115,75,0,0,0
+Big Sky Select Breeders 2018 Two-Year-Old Futurity Sale.html,False,14,3,0,0,0
+Equine Sales 2018 May Two-Year-Olds in Training Sale.html,False,62,42,0,0,0
+Equine Sales 2019 April Two-Year-Olds in Training Sale.html,False,47,32,0,0,0
+Jul20_Excel.xls,True,1110,523,639,13,129
+Jun19_Excel.xls,True,1058,624,749,19,144
+Jun21_Excel.xls,True,926,575,733,8,166
+Jun22_Excel.xls,True,1130,671,888,18,235
+Jun23_Excel.xls,True,1087,645,852,16,223
+June18_Excel.xls,True,934,535,664,7,136
+Keeneland 2019 April Two-Year-Olds in Training Sale.html,False,95,71,0,0,0
+Mar18_Excel.xls,True,572,257,459,0,202
+Mar19_Excel.xls,True,575,306,479,0,173
+Mar20_Excel.xls,True,681,294,481,0,187
+Mar21_Excel.xls,True,561,325,406,2,83
+Mar22_Excel.xls,True,635,374,485,0,111
+Mar23_Excel.xls,True,830,464,682,0,218
+Midlantic June Two-Year-Olds in Training (2023).csv,True,99,59,82,2,25
+Midlantic May Two-Year-Olds in Training (2023).csv,True,598,375,483,5,113
+Midlantic Two-Year-Olds in Training (2018).csv,True,597,333,483,1,151
+Midlantic Two-Year-Olds in Training (2019).csv,True,596,326,481,0,155
+Midlantic Two-Year-Olds in Training (2020).csv,True,559,303,401,8,106
+Midlantic Two-Year-Olds in Training (2021).csv,True,583,357,460,6,109
+Midlantic Two-Year-Olds in Training (2022).csv,True,636,391,543,3,155
+Santa Anita Two-Year-Olds in Training (2019).csv,True,168,69,93,11,35
+Santa Anita Two-Year-Olds in Training (2021).csv,True,112,53,69,3,19
+The Gulfstream Sale (2018).csv,True,162,61,112,3,54
+The Gulfstream Sale (2019).csv,True,186,59,120,5,66
+The Gulfstream Sale (2021).csv,True,182,67,131,6,70
+The Gulfstream Sale (2022).csv,True,100,35,70,0,35
+"https://tcapiodata.azurewebsites.net/odata/Sales/(1034)/Hips?$expand=Consignor,Images,SocialMediaEmbeds",True,121,91,99,6,14
+"https://tcapiodata.azurewebsites.net/odata/Sales/(1037)/Hips?$expand=Consignor,SocialMediaEmbeds,OfferChoice,SexSelection&$orderby=HipNumber%20asc",True,144,90,111,10,31
+"https://tcapiodata.azurewebsites.net/odata/Sales/(1040)/Hips?$expand=Consignor,SocialMediaEmbeds,OfferChoice,SexSelection&$orderby=HipNumber%20asc",True,193,108,148,15,55
