@@ -58,7 +58,7 @@ The trade publication Bloodhorse publishes lists of throroughbred [sales results
 
 Then, we went through and found the auction houses's records for each auction. These files are saved in [source/undertack](data/source/undertack). Metadata on each auction file, is at [manual/undertack_meta.xlsx](data/manual/undertack_meta.xlsx).
 
-If a horse didn't have a recorded time in the auction records -- as may be the case when horses are withdrawn from the auction before the under tack show, break down on the course, or when they are "galloped" instead of being "breezed" -- we did not count the horse as having sprinted in the undertack.
+If a horse didn't have a recorded time in the auction records -- as may be the case when horses are withdrawn from the auction before the under tack show, break down on the course, or when they are "galloped" instead of being "breezed" -- we did not count the horse as having sprinted in the under tack.
 
 When talking about under tacks in the piece, we mostly focus on horses than sprinted one furlong (1/8th of a mile). This analysis includes horses that sprinted all distances. 
 
@@ -71,10 +71,10 @@ For the auctions where we're relying on Bloodhorse data, we count horses sold. B
 A spreadsheet linking the files described above, with all the metadata on the auctions in the US, including the location of the file for that auction. 
 
 * **OBS**: An [Ocala Breeders' Sales](https://obssales.com/) auction
-* **FT**: A [Fasig Tipton](fasigtipton.com/) auction
+* **FT**: A [Fasig Tipton](https://fasigtipton.com/) auction
 * **BH**: An auction that didn't have a publicly available catalog with under tack show times, so we used the Bloodhorse catalog
-* **PDF**: Auctions that released their under tack show time information in PDF format. Used for the earlier [Texas Thoroughbred Association](ttasales.com/) auctions.
-* **API**: Auctions where an API was the best way to access their auction data. Used for the later [Texas Thoroughbred Association](ttasales.com/) auctions.
+* **PDF**: Auctions that released their under tack show time information in PDF format. Used for the earlier [Texas Thoroughbred Association](http://ttasales.com/) auctions.
+* **API**: Auctions where an API was the best way to access their auction data. Used for the later Texas Thoroughbred Association auctions.
 
 ## ETL 
 
@@ -82,13 +82,13 @@ All ETL is in the [etl](etl/) folder:
 
 ### **1. Horse deaths**
 
-**[1-1_horseracing_wrongs.py](etl/1-1_horseracing_wrongs.py)** 
+**[1-1_horseracing_wrongs.py](etl/1-1_extract_horseracing_wrongs.py)** 
 
 This is a web scraper for the ["Killed in Action"](https://horseracingwrongs.org/killed-in-action/) pages on Horseracing Wrongs to get a list of horses that have been killed. 
 
 Output saved at [data/source/etl_1-1_horseracing_wrongs.csv](data/source/etl_1-1_horseracing_wrongs.csv)
 
-**[1-2_parse_hw.py](etl/1-2_parse_hw.csv)**
+**[1-2_parse_hw.py](etl/1-2_parse_hw.py)**
 
 This script parses the data from [data/source/etl_1-1_horseracing_wrongs.csv](data/source/etl_1-1_horseracing_wrongs.csv), splitting the "notes" column into separate columns in a well-formed csv.
 
@@ -114,7 +114,7 @@ This file is where we identify what horses are thoroughbreds.
 
     * If the horse matched in all three data sources with the same foaling year (*fy_tb*==*fy_qh*==*fy_pq*), it is both a quarter horse and a thoroughbred. We labelled it as "T and Q". 
 
-5. Export the horses that were not classified by the above methods (either because of insufficient information, or because they matched to *qh* in addition to a thoroughbred data set) to [etl/processed/etl_1-3_for_manual_review.csv](etl/processed/etl_1-3_for_manual_review.csv), copy them to [etl/manual/etl_1-3_manual.xlsx](etl/manual/etl_1-3_manual.xlsx) and manually review them. Rerun this script to read these back in and overwrite the "TB" column with the manual values.
+5. Export the horses that were not classified by the above methods (either because of insufficient information, or because they matched to *qh* in addition to a thoroughbred data set) to [data/processed/etl_1-3_for_manual_review.csv](data/processed/etl_1-3_for_manual_review.csv), copy them to [data/manual/etl_1-3_manual.xlsx](data/manual/etl_1-3_manual.xlsx) and manually review them. Rerun this script to read these back in and overwrite the "TB" column with the manual values.
 
 Output saved at [data/processed/etl_1-3_hw_identifying_tb.csv](data/processed/etl_1-3_hw_identifying_tb.csv)
 
@@ -122,7 +122,7 @@ Output saved at [data/processed/etl_1-3_hw_identifying_tb.csv](data/processed/et
 
 **[2_twoyo_under_tack.py](etl/2_twoyo_under_tack.py)**
 
-This file reads in all of the auction records specified in [undertack_meta.xlsx](data/manual/undertack_meta.xlsx) (**ut**). We create standardized columns for whether the horse sprinted in the undertack (*breezed*), whether the horse sold (*sale_status*), and -- if available -- the numeric undertack time (*ut_col_numeric*).
+This file reads in all of the auction records specified in [undertack_meta.xlsx](data/manual/undertack_meta.xlsx) (**ut**). We create standardized columns for whether the horse sprinted in the under tack (*breezed*), whether the horse sold (*sale_status*), and -- if available -- the numeric under tack time (*ut_col_numeric*).
 
 We compile this into a single large data set, where every row represents a horse within an auction.
 
@@ -132,9 +132,9 @@ Output saved at [data/processed/etl_2_twoyo_under_tack.csv](data/processed/etl_2
 
 The analysis for this piece is in the notebook [analysis.ipynb](analysis.ipynb).
 
-For our deaths finding, we load [etl_1-3_hw_identifying_tb.csv](data/processed/etl_1-3_hw_identifying_tb.csv), limit it to thoroughbreds, and count the rows. We found 298 thoroughbred deaths this year related to racing or training. Those horses are saved at [data/processed/analysis_1_tb_2023_racing_training.csv](data/processed/analysis_1_tb_2023_racing_training.csv)
+For our deaths finding, we load [etl_1-3_hw_identifying_tb.csv](data/processed/etl_1-3_hw_identifying_tb.csv), limit it to thoroughbreds, and count the rows. We found 298 thoroughbred deaths this year related to racing or training. Those horses are saved at [data/processed/analysis_tb_2023_racing_training.csv](data/processed/analysis_tb_2023_racing_training.csv)
 
-We also calculated this as grouped by state (and broken out by racing and training deaths), and state and track, saved at [data/processed/analysis_1_state_counts_2023.csv](data/processed/analysis_1_state_counts_2023.csv) and [data/processed/analysis_1_deaths_by_state_racetrack_2023.csv](data/processed/analysis_1_deaths_by_state_racetrack_2023.csv) respectively.
+We also calculated this as grouped by state (and broken out by racing and training deaths), and state and track, saved at [data/processed/analysis_state_counts_2023.csv](data/processed/analysis_state_counts_2023.csv) and [data/processed/analysis_deaths_by_state_racetrack_2023.csv](data/processed/analysis_deaths_by_state_racetrack_2023.csv) respectively.
 
 For our finding about under tack shows, we load [etl_2_twoyo_under_tack.csv](data/processed/etl_2_twoyo_under_tack.csv). We demonstrate that the number of horses that sprinted in an under tack show is larger than the number of horses that sold at auction, in all the auctions for which we have data, allowing us to assume that horses sold underestimates the number of under tack sprints. We then calculate the number of sprints we know occurred at the auctions for which we have data (16,990), and then, for the remaining auctions, the number of horses that sold (223) as an under estimate of the number of sprints.
 
@@ -143,7 +143,7 @@ We find at least 17,213 sprints in under tack shows since 2018, none of which wo
 
 ## Graphics 
 
-The web piece contains a table with the horse deaths aggregated by state and broken out by training and racing deaths. The data from that table is at [data/processed/analysis_state_counts_2023.csv](data/processed/analysis_state_counts_2023.csv).
+The web piece contains a table with the horse deaths aggregated by state and broken out by training and racing deaths. The data from that table is at [data/processed/analysis_state_counts_2023.csv](data/processed/analysis_state_counts_2023.csv). [data/processed/analysis_state_counts_2023.csv](data/processed/analysis_state_counts_2023.csv)
 
 ## Other data elements
 
