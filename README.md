@@ -26,11 +26,11 @@ To check the validity of the data, we also used it to calculate the same statist
 
 ##### **Deaths**
 
-We are using data from [Horseracing Wrongs](https://horseracingwrongs.org/) with horse names to identify race horses that died. The data is authored and maintained by Patrick Battuello, compiled from a variety of sources, including regular open records requests to state horse racing commissions, and from media reports. Not all horses in the database are named, either because they weren't yet named when they died, or because their names weren't part of the necropsy reports. Horseracing Wrongs classifies each death as related to racing ("R"), training ("T"), or if it occurred in the horse's stall ("S".)
+We are using data from [Horseracing Wrongs](https://horseracingwrongs.org/) with horse names to identify race horses that died. The data is authored and maintained by Patrick Battuello, compiled from a variety of sources, including regular open records requests to state horse racing commissions, and from media reports. Not all horses in the database are named, either because they weren't yet named when they died, or because their names weren't part of the necropsy reports. Horseracing Wrongs classifies each death as related to racing ("R"), training ("T"), or if it occurred in the horse's stall ("S").
 
 ##### **Racetrack types**
 
-Battuello also provided us with information on what kinds of horses raced at each racetrack. We reformatted that data and added information on additional tracks that had closed down. That information is saved at [manual/racetrack_types.xlsx](data/manual/racetrack_types.xlsx). (Key: T = Thoroughbred, Q = Quarter Horse, H = Harness) In some cases, we found Quarterhorses that had died at tracks that were labelled as Thoroughbred-only. In those cases, we manually adjusted the database. We also manually added and looked up tracks that were not part of this list. 
+Battuello also provided us with information on what kinds of horses raced at each racetrack. We reformatted that data and added information on additional tracks that had closed down. That information is saved at [manual/racetrack_types.xlsx](data/manual/racetrack_types.xlsx). (Key: T = Thoroughbred, Q = Quarter Horse, H = Harness) In some cases, we found Quarterhorses that had died at tracks that were labelled as Thoroughbred-only, or vice versa. In those cases, we manually adjusted the database. We also manually added and looked up tracks that were not part of this list. 
 
 #### **Equibase**
 
