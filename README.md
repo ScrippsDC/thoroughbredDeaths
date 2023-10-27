@@ -1,6 +1,6 @@
 # Horse Deaths
 
-This repository contains data and code to reproduce the data findings in [A new push to protect racehorses is leaving behind young thoroughbreds](https://scrippsnews.com/stories/a-new-push-to-protect-racehorses-is-leaving-behind-young-thoroughbreds/), published on October 25, 2023.
+This repository contains data and code to reproduce the data findings in ["A new push to protect racehorses is leaving behind young thoroughbreds"](https://scrippsnews.com/stories/a-new-push-to-protect-racehorses-is-leaving-behind-young-thoroughbreds/), published on October 25, 2023.
 
 **From the video piece:**
 
@@ -26,21 +26,25 @@ To check the validity of the data, we also used it to calculate the same statist
 
 ##### **Deaths**
 
-We are using data from [Horseracing Wrongs](https://horseracingwrongs.org/) with horse names to identify race horses that died. The data is authored and maintained by Patrick Battuello, compiled from a variety of sources, including regular open records requests to state horse racing commissions, and from media reports. Not all horses in the database are named, either because they weren't yet named when they died, or because their names weren't part of the necropsy reports. Horseracing Wrongs classifies each death as related to racing ("R"), training ("T"), or if it occurred in the horse's stall ("S").
+We are using data from [Horseracing Wrongs](https://horseracingwrongs.org/) to identify race horses that died. The data is maintained by Patrick Battuello, compiled from a variety of sources, including state racing commissions, industry sources, track officials, and media reports. Not all horses in the database are named, either because they died before being named, or because their names weren't part of the necropsy reports. Horseracing Wrongs classifies each death as related to racing ("R"), training ("T"), or if it occurred in the horse's stall ("S").
+
+That information is scraped from the Horseracing Wrongs website in [etl/1-1_horseracing_wrongs.py](etl/1-1_horseracing_wrongs.py), and saved at [data/source/etl_1-1_horseracing_wrongs.csv](data/source/etl_1-1_horseracing_wrongs.csv).
 
 ##### **Racetrack types**
 
-Battuello also provided us with information on what kinds of horses raced at each racetrack. We reformatted that data and added information on additional tracks that had closed down. That information is saved at [manual/racetrack_types.xlsx](data/manual/racetrack_types.xlsx). (Key: T = Thoroughbred, Q = Quarter Horse, H = Harness) In some cases, we found Quarterhorses that had died at tracks that were labelled as Thoroughbred-only, or vice versa. In those cases, we manually adjusted the database. We also manually added and looked up tracks that were not part of this list. 
+Battuello also provided us with information on what kinds of horses race at each racetrack. We reformatted that data and added information on additional tracks that had closed down. (Key: T = Thoroughbred, Q = Quarter Horse, H = Harness) In some cases, we found Quarterhorses that had died at tracks that were originally labelled as Thoroughbred-only, or vice versa. In those cases, we manually adjusted the database. We also manually added and looked up tracks that were not part of this list.
+
+That information is saved at [manual/racetrack_types.xlsx](data/manual/racetrack_types.xlsx).
 
 #### **Equibase**
 
 The horseracing site Equibase publishes [leaderboards](https://www.equibase.com/stats/View.cfm?tf=year&tb=horse) of horses by foaling year. We used data pulled from the leaderboards to help identify horses as thoroughbreds or quarter horses.
 
-These files are saved at [source/equibase_QH.csv](data/source/equibase_QH.csv) and [source/equibase_TB.csv](data/source/equibase_TB.csv)
+This data -- limited to the data we are using (the horse's name and foaling year) -- is saved at [source/equibase_QH.csv](data/source/equibase_QH.csv) and [source/equibase_TB.csv](data/source/equibase_TB.csv)
 
 #### **Pedigree Query**
 
-As a secondary data source on horse breed, we searched for the horses in Horseracing Wrongs in [Pedigree Query](https://www.pedigreequery.com/). This helps us classify thoroughbred horses that aren't present in Equibase's leaderboards, some of whom never raced.
+As a secondary data source on horse breed, we searched for the horses in Horseracing Wrongs in [Pedigree Query](https://www.pedigreequery.com/). This helps us classify thoroughbred horses that aren't present in Equibase's leaderboards, some of whom died in training before they could ever race.
 
 This data is saved at:
 [source/pedigree_query.csv](data/source/pedigree_query.csv)
@@ -64,7 +68,7 @@ In cases where we couldn't find the catalog for the auction, Bloodhorse maintain
 For the auctions where we're relying on Bloodhorse data, we count horses sold. Based on the auction data we do have, we found that this reliably undercounts the number of horses that sprinted in an under tack show. (The number of horses that sprint and then are either withdrawn or RNA is always larger than the number of horses that are sold at auction but did not sprint.)
 
 #### **[manual/undertack_meta.xlsx](data/manual/undertack_meta.xlsx)**
-A spreadsheet with all the metadata on the auctions in the US, including the location of the file for that auction. 
+A spreadsheet linking the files described above, with all the metadata on the auctions in the US, including the location of the file for that auction. 
 
 * **OBS**: An [Ocala Breeders' Sales](https://obssales.com/) auction
 * **FT**: A [Fasig Tipton](fasigtipton.com/) auction
@@ -110,7 +114,7 @@ This file is where we identify what horses are thoroughbreds.
 
     * If the horse matched in all three data sources with the same foaling year (*fy_tb*==*fy_qh*==*fy_pq*), it is both a quarter horse and a thoroughbred. We labelled it as "T and Q". 
 
-5. Export the horses that were not classified by the above methods (either because of insufficient information, or because they matched to *qh* in addition to a thoroughbred data set) to [etl/processed/etl_1-3_for_manual_review.csv](etl/processed/etl_1-3_for_manual_review.csv), saving them in [etl/manual/etl_1-3_manual.xlsx](etl/manual/etl_1-3_manual.xlsx) and manually reviewing them. Rerun this script to read these back in and overwrite the "TB" column with the manual values.
+5. Export the horses that were not classified by the above methods (either because of insufficient information, or because they matched to *qh* in addition to a thoroughbred data set) to [etl/processed/etl_1-3_for_manual_review.csv](etl/processed/etl_1-3_for_manual_review.csv), copy them to [etl/manual/etl_1-3_manual.xlsx](etl/manual/etl_1-3_manual.xlsx) and manually review them. Rerun this script to read these back in and overwrite the "TB" column with the manual values.
 
 Output saved at [data/processed/etl_1-3_hw_identifying_tb.csv](data/processed/etl_1-3_hw_identifying_tb.csv)
 
@@ -118,7 +122,7 @@ Output saved at [data/processed/etl_1-3_hw_identifying_tb.csv](data/processed/et
 
 **[2_twoyo_under_tack.py](etl/2_twoyo_under_tack.py)**
 
-This file reads in all of the auction records specified in [undertack_meta.xlsx](data/manual/undertack_meta.xlsx) (**ut**). We create standardized columns for whether the horse sprinted in the undertack ("breezed"), whether the horse sold ("sale_status"), and -- if available -- the numeric undertack time ("ut_col_numeric").
+This file reads in all of the auction records specified in [undertack_meta.xlsx](data/manual/undertack_meta.xlsx) (**ut**). We create standardized columns for whether the horse sprinted in the undertack (*breezed*), whether the horse sold (*sale_status*), and -- if available -- the numeric undertack time (*ut_col_numeric*).
 
 We compile this into a single large data set, where every row represents a horse within an auction.
 
@@ -153,7 +157,9 @@ The [Jockey Club Fact Book](https://www.jockeyclub.com/default.asp?section=FB&ar
 
 The Jockey Club is the breed registry for thoroughbred horses in the United States and Canada. These statistics include all horses that were foaled in the United States or Canada, and the percentage that have ever raced is based off races in the United States and Canada. 
 
-At the time the piece was published, these were the values in the fact book. For crop year 2019, there are 0 horses in the "5YO+" category because all horses born in 2019 were younger than 5 at the time. The "Total" column has the total percentage of horses that had raced that we calculated, the "Never Raced" column is its complement: 
+At the time the piece was published, these were the values in the fact book. For crop year 2019, there are 0 horses in the "5YO+" category because all horses born in 2019 were younger than 5 at the time. The "Total" column has the total percentage of horses that had raced that we calculated, the "Never Raced" column is its complement. 
+
+#### Percent first-time starters by age
 
 | Crop Year | 2YO | 3YO | 4YO | 5YO+ | Total | Never Raced |
 | --------- | --- | --- | --- | ---- | ----- | ----------- |

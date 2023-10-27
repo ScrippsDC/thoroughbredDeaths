@@ -60,3 +60,4 @@ hw["date_dt"] = hw.apply(lambda x: pd.to_datetime(str(x["date"])+", "+str(x["yea
 ####################
 
 hw.to_csv(processed + "etl_1-2_parse_hw.csv", index=False, encoding='utf-8-sig')
+print("NEIGHHH!")
