@@ -1,4 +1,4 @@
-# Horse Deaths
+# Thoroughbred Deaths
 
 This repository contains data and code to reproduce the data findings in ["A new push to protect racehorses is leaving behind young thoroughbreds"](https://scrippsnews.com/stories/a-new-push-to-protect-racehorses-is-leaving-behind-young-thoroughbreds/), published on October 25, 2023.
 
@@ -143,7 +143,7 @@ We find at least 17,213 sprints in under tack shows since 2018, none of which wo
 
 ## Graphics 
 
-The web piece contains a table with the horse deaths aggregated by state and broken out by training and racing deaths. The data from that table is at [data/processed/analysis_state_counts_2023.csv](data/processed/analysis_state_counts_2023.csv). [data/processed/analysis_state_counts_2023.csv](data/processed/analysis_state_counts_2023.csv)
+The web piece contains a table with the horse deaths aggregated by state and broken out by training and racing deaths. The data from that table is at [data/processed/analysis_state_counts_2023.csv](data/processed/analysis_state_counts_2023.csv).
 
 ## Other data elements
 
