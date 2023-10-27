@@ -12,7 +12,7 @@ Counting the number of horses that undertack
     _______
     
         RC: I made this this a horse-level data set
-        ../data/processed/etl_2-2_twoyo_under_tack.csv
+        ../data/processed/etl_2_twoyo_under_tack.csv
 
 """
 
@@ -169,4 +169,4 @@ ut_df = pd.concat(ut_dfs)
 # WRITING OUT THE FILES #
 #########################
 
-ut_df.to_csv(processed+"etl_2-2_twoyo_under_tack.csv")
+ut_df.to_csv(processed+"etl_2_twoyo_under_tack.csv")

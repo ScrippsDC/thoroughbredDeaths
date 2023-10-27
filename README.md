@@ -110,9 +110,9 @@ This file is where we identify what horses are thoroughbreds.
 
     * If the horse matched in all three data sources with the same foaling year (*fy_tb*==*fy_qh*==*fy_pq*), it is both a quarter horse and a thoroughbred. We labelled it as "T and Q". 
 
-5. Export the horses that were not classified by the above methods (either because of insufficient information, or because they matched to *qh* in addition to a thoroughbred data set) to [etl/processed/etl_1-3_for_manual_review.csv](etl/processed/etl_1-4_for_manual_review.csv), saving them in [etl/manual/etl_1-4_manual.xlsx](etl/manual/etl_1-4_manual.xlsx) and manually reviewing them. Rerun this script to read these back in and overwrite the "TB" column with the manual values.
+5. Export the horses that were not classified by the above methods (either because of insufficient information, or because they matched to *qh* in addition to a thoroughbred data set) to [etl/processed/etl_1-3_for_manual_review.csv](etl/processed/etl_1-3_for_manual_review.csv), saving them in [etl/manual/etl_1-3_manual.xlsx](etl/manual/etl_1-3_manual.xlsx) and manually reviewing them. Rerun this script to read these back in and overwrite the "TB" column with the manual values.
 
-Output saved at [data/processed/etl_1-3_hw_identifying_tb.csv](data/processed/etl_1-4_hw_identifying_tb.csv)
+Output saved at [data/processed/etl_1-3_hw_identifying_tb.csv](data/processed/etl_1-3_hw_identifying_tb.csv)
 
 ### **2. Under tack shows**
 
@@ -175,4 +175,4 @@ At the time the piece was published, these were the values in the fact book. For
 | 2018 | 34.55 | 28.46 | 4.56 | 0.6 | 68.17 | **31.83** |
 | 2019 | 38.01 | 28.06 | 0.74 | 0 | 66.81 | **33.19** |
 
-Since each of the individual years was between 29.99% and 36.18%, with a median of 33.19%, we interpreted this as approximately one third of horses. We also checked this number with other analyses and data from the Jockey Club and found similar values. 
+Since each of the individual years was between 29.66% and 36.18%, with a median of 33.19%, we interpreted this as approximately one third of horses. We also checked this number with other analyses and data from the Jockey Club and found similar values. 

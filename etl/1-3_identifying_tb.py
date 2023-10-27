@@ -24,9 +24,9 @@ See etl/notebooks/8_matching_horses.ipynb for scratch work
     outputs: 
     _______
 
-        data/processed/etl_1-4_for_manual_review.csv
+        data/processed/etl_1-3_for_manual_review.csv
 
-        data/processed/etl_1-4_hw_identifying_tb.csv
+        data/processed/etl_1-3_hw_identifying_tb.csv
 
 
 """
@@ -139,7 +139,7 @@ deaths_w_reg_fy.loc[(deaths_w_reg_fy['TB']=="unclear") & (deaths_w_reg_fy['fy_QH
 
 man = deaths_w_reg_fy[(deaths_w_reg_fy.TB == 'unclear')]
 
-man[['name', 'date', "Types", 'notes']].to_csv(processed + "etl_1-4_for_manual_review.csv", index=None, encoding='utf-8-sig')
+man[['name', 'date', "Types", 'notes']].to_csv(processed + "etl_1-3_for_manual_review.csv", index=None, encoding='utf-8-sig')
 print(f"Number to be manually looked up for 2023: {len(man)}")
 
 #########################
@@ -167,6 +167,6 @@ final = deaths_w_reg_fy
 # WRITING OUT FILE #
 ####################
 
-final.to_csv(processed + "etl_1-4_hw_identifying_tb.csv", index=None, encoding='utf-8-sig')
+final.to_csv(processed + "etl_1-3_hw_identifying_tb.csv", index=None, encoding='utf-8-sig')
 
 print("NEIGHHHHHHHH")
