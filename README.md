@@ -16,7 +16,7 @@ and
 
 ## Data
 
-### **1. Horse deaths** 
+### **1. Thoroughbred deaths** 
 
 The story focuses on thoroughbred racing, which is the only federally regulated horse racing in the United States. As such, our analysis focuses on the deaths of thoroughbreds. The main data source for our findings is a list of deaths of many kinds of racehorses from an advocacy organization called Horseracing Wrongs. We cross-reference this dataset with various external sources to determine if the horse was a thoroughbred -- as opposed to a quarter horse, standardbred, or any other kind of race horse.
 
